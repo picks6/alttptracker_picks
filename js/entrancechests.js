@@ -32,7 +32,7 @@
 		
 	function canReachDarkWorld()
 	{
-		return items.moonpearl && (items.glove === 2 || items.glove && items.hammer || items.agahnim);
+		return (items.moonpearl && items.boots || items.agahnim);
 	}
 	
 	function canReachLightWorld()//Can walk around in Light World as Link
@@ -47,7 +47,7 @@
 
 	function canReachPyramid()
 	{
-		return (canReachDarkWorld() && (items.flippers || canReachPyramidWithoutFlippers()));
+		return (canReachDarkWorld() && items.moonpearl) || (items.agahnim && items.mirror);
 	}
 
 	function canReachPyramidWithoutFlippers()
@@ -82,31 +82,22 @@
 	//Light World
 	function canReachWDMNorth()
 	{
-		if (hasFoundEntrance(68) || (hasFoundEntrance(77) && items.hammer) || 
-		(items.mirror && (hasFoundEntrance(69) || hasFoundEntrance(70) || hasFoundEntrance(71) || hasFoundEntrance(72) || hasFoundEntrance(73) || hasFoundEntrance(75) || hasFoundEntrance(76) || hasFoundEntrance(127) || hasFoundEntrance(131) || hasFoundEntrance(132) || hasFoundEntrance(133) || hasFoundEntrance(136))) || (items.flute && items.mirror)
-		) return true;
-		if (items.mirror && items.hookshot && (hasFoundEntrance(77) || hasFoundEntrance(78) || hasFoundEntrance(79) || hasFoundEntrance(80) || hasFoundEntrance(81) || hasFoundEntrance(82) || hasFoundEntrance(83) || hasFoundEntrance(84))) return true;
-		if (items.mirror && items.hammer && (hasFoundEntrance(128) || hasFoundEntrance(130))) return true;
-		
-		return false;
+		return true;
 	}
 
 	function canReachWDM()
 	{
-		if (canReachWDMNorth() || (items.mirror && canReachDWWDM()) || items.flute || (items.hookshot && (hasFoundEntrance(77) || hasFoundEntrance(78) || hasFoundEntrance(79) || hasFoundEntrance(80) || hasFoundEntrance(81) || hasFoundEntrance(82) || hasFoundEntrance(83) || hasFoundEntrance(84) || (hasFoundEntrance(137) || hasFoundEntrance(138) || hasFoundEntrance(139)) && items.mirror)) || hasFoundEntrance(69) || hasFoundEntrance(70) || hasFoundEntrance(71) || hasFoundEntrance(72) || hasFoundEntrance(73) || hasFoundEntrance(75) || hasFoundEntrance(76)) return true;
-		return false;
+		return true;
 	}
 	
 	function canReachEDMNorth()
 	{
-		if ((canReachWDMNorth() && items.hammer) || hasFoundEntrance(77) || (hasFoundEntrance(68) && items.hammer) || (items.mirror && (hasFoundEntrance(127) || hasFoundEntrance(131) || hasFoundEntrance(132) || hasFoundEntrance(133) || hasFoundEntrance(136))) || (items.flute && items.mirror && items.hammer)) return true;
-		return false;
+		return true;
 	}
 
 	function canReachEDM()
 	{
-		if (canReachEDMNorth() || (items.flute && items.hookshot) || (items.hookshot && canReachWDM()) || (items.hammer && canReachWDMNorth()) || ((hasFoundEntrance(134) || hasFoundEntrance(135) || hasFoundEntrance(137) || hasFoundEntrance(138) || hasFoundEntrance(139)) && items.mirror) || hasFoundEntrance(78) || hasFoundEntrance(79) || hasFoundEntrance(80) || hasFoundEntrance(81) || hasFoundEntrance(82) || hasFoundEntrance(83) || hasFoundEntrance(84)) return true;
-		return false;
+	  	return true;
 	}
 	
 	function canReachHCNorth()
@@ -117,7 +108,7 @@
 	
 	//Dark World
 	function canReachOutcast() {
-		if (items.moonpearl && (items.glove === 2 || items.glove && items.hammer || items.agahnim && items.hookshot && (items.hammer || items.glove || items.flippers))) return true;
+		if (items.moonpearl) return true;
 		if (hasFoundEntrance(90) || hasFoundEntrance(91) || (flags.doorshuffle === 'N' && hasFoundEntrance(96)) || hasFoundEntrance(99) || hasFoundEntrance(102) || hasFoundEntrance(104) || hasFoundEntrance(105) || hasFoundEntrance(106) || hasFoundEntrance(107) || hasFoundEntrance(108) || hasFoundEntrance(109) || (hasFoundEntrance(110) && items.moonpearl && items.hammer) || hasFoundEntrance(111) || (hasFoundEntrance(112) && items.moonpearl && items.glove === 2) || hasFoundEntrance(129)) return true;
 		if ((hasFoundEntrance(86) || hasFoundEntrance(87) || hasFoundEntrance(88) || hasFoundEntrance(89) || hasFoundEntrance(113) || hasFoundEntrance(119)) && items.moonpearl && (items.glove === 2 || (items.flippers && items.hookshot) || (items.glove > 0 && items.hammer && items.hookshot))) return true;
 		if (canReachDarkWorldEast() && items.moonpearl && ((items.flippers || items.hammer || items.glove > 0) && items.hookshot)) return true;
@@ -133,24 +124,23 @@
 	}
 	
 	function canReachDarkWorldEast() {
-		if (canReachDarkWorld() && (items.hammer || items.flippers)) return true;
 		if (items.agahnim || hasFoundEntrance(94) || hasFoundEntrance(95) || hasFoundEntrance(114) || hasFoundEntrance(115) || hasFoundEntrance(116) || hasFoundEntrance(117) || ((hasFoundEntrance(86) || hasFoundEntrance(87) || hasFoundEntrance(88) || hasFoundEntrance(89) || hasFoundEntrance(113) || hasFoundEntrance(119)) && (items.hammer || items.flippers) && items.moonpearl) || (hasFoundEntrance(92) && items.moonpearl && (items.glove > 0 || items.hammer))) return true;
 		if ((hasFoundEntrance(90) || hasFoundEntrance(91) || (flags.doorshuffle === 'N' && hasFoundEntrance(96)) || hasFoundEntrance(99) || hasFoundEntrance(102) || hasFoundEntrance(104) || hasFoundEntrance(105) || hasFoundEntrance(106) || hasFoundEntrance(107) || hasFoundEntrance(108) || hasFoundEntrance(109) || (hasFoundEntrance(110) && items.hammer) || hasFoundEntrance(111) || hasFoundEntrance(129)) && items.moonpearl && (items.flippers || items.hammer)) return true;
 		if (canReachAndLeaveShoppingMall()) return true;
-		return false;
+		return items.moonpearl;
 	}
 	
 	function canReachDarkWorldSouthEast() {
-		if (hasFoundEntrance(120) || hasFoundEntrance(121) || hasFoundEntrance(122) || ((canReachDarkWorld() || canReachDarkWorldEast() || canReachDarkWorldSouth()) && items.flippers && items.moonpearl)) return true;
+		if (hasFoundEntrance(120) || hasFoundEntrance(121) || hasFoundEntrance(122) || ((canReachDarkWorld() || canReachDarkWorldEast() || canReachDarkWorldSouth())  && items.moonpearl)) return true;
 	}
 	
 	function canReachMiseryMire() {
-		if (hasFoundEntrance(123) || hasFoundEntrance(124) || hasFoundEntrance(125) || hasFoundEntrance(126) || (items.flute && items.glove === 2)) return true;
+		if (hasFoundEntrance(123) || hasFoundEntrance(124) || hasFoundEntrance(125) || hasFoundEntrance(126) || (items.flute && items.glove === 2) || canReachDarkWorld()) return true;
 	}	
 	
 	function canReachDWDMNorth()
 	{
-		if (hasFoundEntrance(127) || hasFoundEntrance(131) || hasFoundEntrance(132) || hasFoundEntrance(133) || hasFoundEntrance(136) || (canReachEDMNorth() && items.hammer && items.glove === 2)) return true;
+		if (hasFoundEntrance(127) || hasFoundEntrance(131) || hasFoundEntrance(132) || hasFoundEntrance(133) || hasFoundEntrance(136) || items.moonpearl || items.hammer ) return true;
 		return false;
 	}
 
@@ -168,7 +158,7 @@
 	
 	function canReachAndLeaveShoppingMall()
 	{
-		if ((hasFoundEntrance(120) || hasFoundEntrance(121) || hasFoundEntrance(122)) && items.moonpearl && items.flippers) return true;
+		if ((hasFoundEntrance(120) || hasFoundEntrance(121) || hasFoundEntrance(122)) && items.moonpearl) return true;
 		return false;
 	}
 	
@@ -2007,7 +1997,7 @@
 				caption: 'King Zora: Pay 500 rupees',
 				is_opened: false,
 				is_available: function() {
-					return canReachInvertedLightWorld() ? (items.flippers || items.glove ? 'available' : 'unavailable') : 'unavailable';
+					return 'available';
 				}
 			}, { // [10]
 				caption: 'Lost Old Man {lantern}',
@@ -3896,8 +3886,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(1)) return 'available';
-					return (items.boots ? 'available' : 'unavailable');
+					return 'available';
 				}
 			}, { // [2]
 				caption: 'Dam',
@@ -3915,8 +3904,8 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(3)) return 'available';
-					return (items.mirror && canReachDarkWorldSouth() ? 'available' : 'unavailable');
+					return 'available';
+;
 				}
 			}, { // [4]
 				caption: 'Magic Shop',
@@ -4019,8 +4008,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(14)) return 'available';
-					return (items.boots ? 'available' : 'unavailable');
+					return 'available';
 				}
 			}, { // [15]
 				caption: 'Grave',
@@ -4038,8 +4026,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(16)) return 'available';
-					return (items.mirror && items.moonpearl && canReachOutcast() ? 'available' : 'unavailable');
+					return 'available';
 				}
 			}, { // [17]
 				caption: 'King\'s Grave',
@@ -4048,10 +4035,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(17)) return 'available';
-					if (!items.boots) return 'unavailable';
-					if ((canReachOutcast() && items.mirror && items.moonpearl) || items.glove === 2) return 'available';
-					return 'unavailable';
+					return 'available';
 				}
 			}, { // [18]
 				caption: 'North Fairy Cave',
@@ -4133,8 +4117,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(26)) return 'available';
-					return (items.glove > 0 || (hasFoundEntrance(105) && items.mirror)) ? 'available' : 'unavailable';
+					return 'available';
 				}
 			}, { // [27]
 				caption: 'Kakariko Fortune Teller',
@@ -4297,7 +4280,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					return ((hasFoundEntrance(112) && items.mirror) || (items.hammer || items.glove === 2 && items.mirror && items.moonpearl)) ? 'available' : 'unavailable';
+					return 'available';
 				}
 			}, { // [45]
 				caption: 'Library',
@@ -4400,7 +4383,8 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					return hasFoundEntrance(55) ? 'available' : 'unavailable';
+					if (hasFoundEntrance(54)) return 'available';	
+					return  (items.mirror && canReachMiseryMire()) ? 'available': 'unavailable';			
 				}
 			}, { // [56]
 				caption: 'Desert Palace - North Entrance',
@@ -4420,7 +4404,7 @@
 				is_connector: false,
 				is_available: function() {
 					if (hasFoundEntrance(57)) return 'available';
-					return (canReachMiseryMire() && items.mirror && items.glove > 0) ? 'available' : 'unavailable';
+					return (items.glove > 0) ? 'available' : 'unavailable';
 				}
 			}, { // [58]
 				caption: 'Aginah\'s Cave',
@@ -4485,9 +4469,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(64)) return 'available';
-					if (hasFoundEntrance(118) && items.mirror) return 'available';
-					return (items.flippers) ? 'available' : 'unavailable';
+					return 'available';
 				}
 			}, { // [65]
 				caption: 'Ice Rod Cave {bomb}',
@@ -4586,9 +4568,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(74)) return 'available';
-					if (hasFoundEntrance(129) && items.mirror) return 'available';
-					return 'unavailable';
+					return 'available';
 				}
 			}, { // [75]
 				caption: 'Old Man Cave (West)',
@@ -4699,7 +4679,7 @@
 				is_connector: false,
 				is_available: function() {
 					if (hasFoundEntrance(85)) return 'available';
-					return ((items.mirror && (hasFoundEntrance(138) || hasFoundEntrance(139)))) ? 'available' : 'unavailable';
+					return (items.mirror && canReachDWDMNorth()) ? 'available' : 'unavailable';
 				}
 			}, { // [86]
 				caption: 'Bomb Shop',
@@ -4764,13 +4744,7 @@
 				known_location: '',
 				is_connector: false,
 				is_available: function() {
-					if (hasFoundEntrance(92)) return 'available';
-					//if (items.moonpearl && items.glove && (items.agahnim || items.hammer || items.glove === 2 && items.flippers)) return 'available';
-					if (canReachOutcast() && items.moonpearl && items.flippers) return 'available';
-					return (canReachDarkWorldEast() && items.moonpearl && (items.flippers || items.glove > 0 || items.hammer)) ? 'available' : 'unavailable';
-					//if (canReachDarkWorldSouth() && items.moonpearl && (items.flippers || items.hammer)) return 'available';
-					//if (canReachDarkWorldEast() && items.moonpearl && (items.flippers || items.hammer || items.glove > 0)) return 'available';
-					//return (!canReachDarkWorld() ) ? 'unavailable' : 'available';
+					return items.moonpearl ? 'available' : 'unavailable';
 				}
 			}, { // [93]
 				caption: 'Pyramid Hole',
@@ -4791,12 +4765,15 @@
 				is_connector: false,
 				is_available: function() {
 					if (hasFoundEntrance(94)) return 'available';
+					if (items.moonpearl && items.mirror) return 'available';
+					if (items.moonpearl) return 'possible';
 					var crystal_count = 0;
 					for(var k = 0; k < 10; k++)
 						if(prizes[k] === 4 && items['boss'+k])
 							crystal_count += 1;
 					if (crystal_count >= 2 && (canReachPyramid() || canReachDarkWorldEast())) {
 						return hasFoundLocation('bomb') ? 'available' : 'possible';
+					
 					}
 					return 'unavailable';
 				}
@@ -5537,39 +5514,41 @@
 				caption: 'Desert West Ledge',
 				is_opened: false,
 				is_available: function() {
-					return (hasFoundEntrance(54) || (items.mirror && canReachMiseryMire()) || (items.flute && items.glove === 2 && items.mirror) || (hasFoundEntrance(56) && items.glove > 0)) ? 'available' : 'information';
+					return 'available' ;
 				}
 			}, { // [16]
 				caption: 'Lake Hylia Island {mirror}',
 				is_opened: false,
 				is_available: function() {
-					return items.flippers && items.mirror && items.moonpearl && (canReachDarkWorldEast() || canReachDarkWorldSouth()) ? 'available' : 'information';
+					return 'available';
 				}
 			}, { // [17]
 				caption: 'Bumper Cave {cape}',
 				is_opened: false,
 				is_available: function() {
+					if (items.bottle > 0) return 'possible';
+					if (items.moonpearl) return 'available';
 					return hasFoundEntrance(129) ? 'available' : (canReachOutcast() ? 'information' : 'unavailable');
 				}
 			}, { // [18]
 				caption: 'Pyramid',
 				is_opened: false,
 				is_available: function() {
+					if (items.bottle > 0) return 'possible';
 					return canReachDarkWorldEast() || items.agahnim || items.glove && items.hammer && items.moonpearl || items.glove === 2 && items.moonpearl && items.flippers ? 'available' : 'unavailable';
 				}
 			}, { // [19]
 				caption: 'Alec Baldwin\'s Dig-a-Thon: Pay 80 rupees',
 				is_opened: false,
 				is_available: function() {
+					if (items.bottle > 0) return 'possible';
 					return items.moonpearl && (canReachOutcast() || canReachDarkWorldSouth() || (items.agahnim && items.moonpearl && items.hammer)) ? 'available' : 'unavailable';
 				}
 			}, { // [20]
 				caption: 'Zora River Ledge {flippers}',
 				is_opened: false,
 				is_available: function() {
-					if (items.flippers) return 'available';
-					if (items.glove) return 'information';
-					return 'unavailable';
+					return 'available'
 				}
 			}, { // [21]
 				caption: 'Buried Itam {shovel}',
