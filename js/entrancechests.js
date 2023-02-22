@@ -3367,6 +3367,7 @@
 				is_connector: false,
 				is_available: function () {
 					if (hasFoundEntrance(115)) return 'available';
+					if (canReachDarkWorldEastGlitch()) return 'available';
 					if ((items.bottle > 0) && items.boots) return 'possible';
 					return canReachDarkWorldEastGlitch() ? 'available' : 'unavailable';
 				}
@@ -3378,6 +3379,7 @@
 				is_connector: false,
 				is_available: function () {
 					if (hasFoundEntrance(116)) return 'available';
+					if (canReachDarkWorldEastGlitch()) return 'available';
 					if ((items.bottle > 0) && items.boots) return 'possible';
 					return canReachDarkWorldEastGlitch() ? 'available' : 'unavailable';
 				}
@@ -3389,6 +3391,7 @@
 				is_connector: false,
 				is_available: function () {
 					if (hasFoundEntrance(117)) return 'available';
+					if (canReachDarkWorldEastGlitch()) return 'available';
 					if ((items.bottle > 0) && items.boots) return 'possible';
 					return canReachDarkWorldEastGlitch() ? 'available' : 'unavailable';
 				}
